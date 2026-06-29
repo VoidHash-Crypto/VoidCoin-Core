@@ -172,7 +172,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock()
      *
      * Normal mining subsidy and normal transaction selection begin at block 2.
      */
-    if (nHeight != VOIDCOIN_DEVFUND_BLOCK_HEIGHT && m_mempool) {
+    if (m_mempool) {
         addPackageTxs(nPackagesSelected, nDescendantsUpdated);
     }
 
@@ -187,24 +187,10 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock()
     coinbaseTx.vin[0].prevout.SetNull();
     coinbaseTx.vin[0].scriptSig = CScript() << nHeight << OP_0;
 
-    if (nHeight == VOIDCOIN_DEVFUND_BLOCK_HEIGHT) {
-        /*
-         * Block 1 creates the complete 21,000,000 VOID dev fund allocation.
-         *
-         * The coinbase outputs must exactly match VOIDCOIN_DEVFUND_OUTPUTS.
-         * No miner payout, fees, or mempool transactions are included here.
-         */
-        coinbaseTx.vout = VoidCoinDevFundCoinbaseOutputs();
-
-        // Block 1 should have no mempool-selected fees because we skipped tx selection.
-        nFees = 0;
-        pblocktemplate->vTxFees[0] = 0;
-    } else {
         coinbaseTx.vout.resize(1);
         coinbaseTx.vout[0].scriptPubKey = m_options.coinbase_output_script;
         coinbaseTx.vout[0].nValue = nFees + GetBlockSubsidy(nHeight, chainparams.GetConsensus());
         pblocktemplate->vTxFees[0] = -nFees;
-    }
 
     pblock->vtx[0] = MakeTransactionRef(std::move(coinbaseTx));
     pblocktemplate->vchCoinbaseCommitment.clear();

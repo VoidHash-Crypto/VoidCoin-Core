@@ -2265,15 +2265,11 @@ CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
      *   + 21,000,000 VOID consensus dev fund
      *   = 231,000,000 VOID max supply.
      */
-    if (nHeight == VOIDCOIN_DEVFUND_BLOCK_HEIGHT) {
-        return VOIDCOIN_DEVFUND_TOTAL_AMOUNT;
-    }
+    // Dev fund subsidy removed
 
-    if (nHeight < VOIDCOIN_FIRST_NORMAL_SUBSIDY_HEIGHT) {
-        return 0;
-    }
+    // Dev fund removed
 
-    const int adjusted_height = nHeight - VOIDCOIN_FIRST_NORMAL_SUBSIDY_HEIGHT;
+    const int adjusted_height = nHeight - 1;
     int halvings = adjusted_height / consensusParams.nSubsidyHalvingInterval;
 
     // Force block reward to zero when right shift is undefined.
@@ -4741,23 +4737,7 @@ static bool ContextualCheckBlock(const CBlock& block, BlockValidationState& stat
      *
      * Normal 50 VOID mining subsidy begins at block 2.
      */
-    if (nHeight == VOIDCOIN_DEVFUND_BLOCK_HEIGHT) {
-        if (block.vtx.size() != 1) {
-            return state.Invalid(
-                BlockValidationResult::BLOCK_CONSENSUS,
-                "bad-devfund-block-tx-count",
-                "VoidCoin dev fund block must contain only the dev fund coinbase transaction"
-            );
-        }
-
-        if (!VoidCoinDevFundCoinbaseIsExpected(*block.vtx[0])) {
-            return state.Invalid(
-                BlockValidationResult::BLOCK_CONSENSUS,
-                "bad-devfund-coinbase",
-                "VoidCoin block 1 coinbase does not match the consensus dev fund allocation"
-            );
-        }
-    }
+    // Dev fund validation removed - block 1 is normal
 
     // Enforce BIP113 (Median Time Past).
     bool enforce_locktime_median_time_past{false};
