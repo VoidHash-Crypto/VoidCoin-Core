@@ -22,9 +22,9 @@ VoidCoinUnits::VoidCoinUnits(QObject *parent):
 QList<VoidCoinUnit> VoidCoinUnits::availableUnits()
 {
     QList<VoidCoinUnit> unitlist;
-    unitlist.append(Unit::VOID);
-    unitlist.append(Unit::mVOID);
-    unitlist.append(Unit::uVOID);
+    unitlist.append(Unit::VCOIN);
+    unitlist.append(Unit::mVCOIN);
+    unitlist.append(Unit::uVCOIN);
     unitlist.append(Unit::QUARK);
     return unitlist;
 }
@@ -32,9 +32,9 @@ QList<VoidCoinUnit> VoidCoinUnits::availableUnits()
 QString VoidCoinUnits::longName(Unit unit)
 {
     switch (unit) {
-    case Unit::VOID: return QString("VOID");
-    case Unit::mVOID: return QString("mVOID");
-    case Unit::uVOID: return QString::fromUtf8("µVOID (bits)");
+    case Unit::VCOIN: return QString("VOID");
+    case Unit::mVCOIN: return QString("mVOID");
+    case Unit::uVCOIN: return QString::fromUtf8("µVOID (bits)");
     case Unit::QUARK: return QString("Quark (quark)");
     } // no default case, so the compiler can warn about missing cases
     assert(false);
@@ -43,9 +43,9 @@ QString VoidCoinUnits::longName(Unit unit)
 QString VoidCoinUnits::shortName(Unit unit)
 {
     switch (unit) {
-    case Unit::VOID: return longName(unit);
-    case Unit::mVOID: return longName(unit);
-    case Unit::uVOID: return QString("bits");
+    case Unit::VCOIN: return longName(unit);
+    case Unit::mVCOIN: return longName(unit);
+    case Unit::uVCOIN: return QString("bits");
     case Unit::QUARK: return QString("quark");
     } // no default case, so the compiler can warn about missing cases
     assert(false);
@@ -54,9 +54,9 @@ QString VoidCoinUnits::shortName(Unit unit)
 QString VoidCoinUnits::description(Unit unit)
 {
     switch (unit) {
-    case Unit::VOID: return QString("VoidCoins");
-    case Unit::mVOID: return QString("Milli-VoidCoins (1 / 1" THIN_SP_UTF8 "000)");
-    case Unit::uVOID: return QString("Micro-VoidCoins (bits) (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+    case Unit::VCOIN: return QString("VoidCoins");
+    case Unit::mVCOIN: return QString("Milli-VoidCoins (1 / 1" THIN_SP_UTF8 "000)");
+    case Unit::uVCOIN: return QString("Micro-VoidCoins (bits) (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
     case Unit::QUARK: return QString("Quark (quark) (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
     } // no default case, so the compiler can warn about missing cases
     assert(false);
@@ -65,9 +65,9 @@ QString VoidCoinUnits::description(Unit unit)
 qint64 VoidCoinUnits::factor(Unit unit)
 {
     switch (unit) {
-    case Unit::VOID: return 100'000'000;
-    case Unit::mVOID: return 100'000;
-    case Unit::uVOID: return 100;
+    case Unit::VCOIN: return 100'000'000;
+    case Unit::mVCOIN: return 100'000;
+    case Unit::uVCOIN: return 100;
     case Unit::QUARK: return 1;
     } // no default case, so the compiler can warn about missing cases
     assert(false);
@@ -76,15 +76,15 @@ qint64 VoidCoinUnits::factor(Unit unit)
 int VoidCoinUnits::decimals(Unit unit)
 {
     switch (unit) {
-    case Unit::VOID: return 8;
-    case Unit::mVOID: return 5;
-    case Unit::uVOID: return 2;
+    case Unit::VCOIN: return 8;
+    case Unit::mVCOIN: return 5;
+    case Unit::uVCOIN: return 2;
     case Unit::QUARK: return 0;
     } // no default case, so the compiler can warn about missing cases
     assert(false);
 }
 
-QString VoidCoinUnits::format(Unit unit, const CAmount& nIn, bool fPlus, SeparatorStyle separators, bool justify)
+QString VoidCoinUnits::format(Unit unit, const CAmount& nIn, bool fPlus, VoidCoinSeparatorStyle separators, bool justify)
 {
     // Note: not using straight sprintf here because we do NOT want
     // localized number formatting.
@@ -102,7 +102,7 @@ QString VoidCoinUnits::format(Unit unit, const CAmount& nIn, bool fPlus, Separat
     // confused with the decimal marker.
     QChar thin_sp(THIN_SP_CP);
     int q_size = quotient_str.size();
-    if (separators == SeparatorStyle::ALWAYS || (separators == SeparatorStyle::STANDARD && q_size > 4))
+    if (separators == VoidCoinSeparatorStyle::ALWAYS || (separators == VoidCoinSeparatorStyle::STANDARD && q_size > 4))
         for (int i = 3; i < q_size; i += 3)
             quotient_str.insert(q_size - i, thin_sp);
 
@@ -129,19 +129,19 @@ QString VoidCoinUnits::format(Unit unit, const CAmount& nIn, bool fPlus, Separat
 // Please take care to use formatHtmlWithUnit instead, when
 // appropriate.
 
-QString VoidCoinUnits::formatWithUnit(Unit unit, const CAmount& amount, bool plussign, SeparatorStyle separators)
+QString VoidCoinUnits::formatWithUnit(Unit unit, const CAmount& amount, bool plussign, VoidCoinSeparatorStyle separators)
 {
     return format(unit, amount, plussign, separators) + QString(" ") + shortName(unit);
 }
 
-QString VoidCoinUnits::formatHtmlWithUnit(Unit unit, const CAmount& amount, bool plussign, SeparatorStyle separators)
+QString VoidCoinUnits::formatHtmlWithUnit(Unit unit, const CAmount& amount, bool plussign, VoidCoinSeparatorStyle separators)
 {
     QString str(formatWithUnit(unit, amount, plussign, separators));
     str.replace(QChar(THIN_SP_CP), QString(THIN_SP_HTML));
     return QString("<span style='white-space: nowrap;'>%1</span>").arg(str);
 }
 
-QString VoidCoinUnits::formatWithPrivacy(Unit unit, const CAmount& amount, SeparatorStyle separators, bool privacy)
+QString VoidCoinUnits::formatWithPrivacy(Unit unit, const CAmount& amount, VoidCoinSeparatorStyle separators, bool privacy)
 {
     assert(amount >= 0);
     QString value;
@@ -233,9 +233,9 @@ namespace {
 qint8 ToQint8(VoidCoinUnit unit)
 {
     switch (unit) {
-    case VoidCoinUnit::VOID: return 0;
-    case VoidCoinUnit::mVOID: return 1;
-    case VoidCoinUnit::uVOID: return 2;
+    case VoidCoinUnit::VCOIN: return 0;
+    case VoidCoinUnit::mVCOIN: return 1;
+    case VoidCoinUnit::uVCOIN: return 2;
     case VoidCoinUnit::QUARK: return 3;
     } // no default case, so the compiler can warn about missing cases
     assert(false);
@@ -244,9 +244,9 @@ qint8 ToQint8(VoidCoinUnit unit)
 VoidCoinUnit FromQint8(qint8 num)
 {
     switch (num) {
-    case 0: return VoidCoinUnit::VOID;
-    case 1: return VoidCoinUnit::mVOID;
-    case 2: return VoidCoinUnit::uVOID;
+    case 0: return VoidCoinUnit::VCOIN;
+    case 1: return VoidCoinUnit::mVCOIN;
+    case 2: return VoidCoinUnit::uVCOIN;
     case 3: return VoidCoinUnit::QUARK;
     }
     assert(false);

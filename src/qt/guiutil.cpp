@@ -185,7 +185,7 @@ bool parseVoidCoinURI(const QUrl &uri, SendCoinsRecipient *out)
         {
             if(!i->second.isEmpty())
             {
-                if (!VoidCoinUnits::parse(VoidCoinUnit::VOID, i->second, &rv.amount)) {
+                if (!VoidCoinUnits::parse(VoidCoinUnit::VCOIN, i->second, &rv.amount)) {
                     return false;
                 }
             }
@@ -217,7 +217,7 @@ QString formatVoidCoinURI(const SendCoinsRecipient &info)
 
     if (info.amount)
     {
-        ret += QString("?amount=%1").arg(VoidCoinUnits::format(VoidCoinUnit::VOID, info.amount, false, VoidCoinUnits::SeparatorStyle::NEVER));
+        ret += QString("?amount=%1").arg(VoidCoinUnits::format(VoidCoinUnit::VCOIN, info.amount, false, VoidCoinSeparatorStyle::NEVER));
         paramCount++;
     }
 

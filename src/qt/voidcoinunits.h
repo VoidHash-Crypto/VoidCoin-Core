@@ -30,6 +30,13 @@
 /** VoidCoin unit definitions. Encapsulates parsing and formatting
    and serves as list model for drop-down selection boxes.
 */
+enum class VoidCoinSeparatorStyle
+{
+    NEVER,
+    STANDARD,
+    ALWAYS
+};
+
 class VoidCoinUnits: public QAbstractListModel
 {
     Q_OBJECT
@@ -41,19 +48,14 @@ public:
       @note Source: https://en.bitcoin.it/wiki/Units . Please add only sensible ones
      */
     enum class Unit {
-        VOID,
-        mVOID,
-        uVOID,
+        VCOIN,
+        mVCOIN,
+        uVCOIN,
         QUARK
     };
     Q_ENUM(Unit)
 
-    enum class SeparatorStyle
-    {
-        NEVER,
-        STANDARD,
-        ALWAYS
-    };
+    using SeparatorStyle = VoidCoinSeparatorStyle;
 
     //! @name Static API
     //! Unit conversion and formatting
@@ -72,13 +74,13 @@ public:
     //! Number of decimals left
     static int decimals(Unit unit);
     //! Format as string
-    static QString format(Unit unit, const CAmount& amount, bool plussign = false, SeparatorStyle separators = SeparatorStyle::STANDARD, bool justify = false);
+    static QString format(Unit unit, const CAmount& amount, bool plussign = false, VoidCoinSeparatorStyle separators = VoidCoinSeparatorStyle::STANDARD, bool justify = false);
     //! Format as string (with unit)
-    static QString formatWithUnit(Unit unit, const CAmount& amount, bool plussign = false, SeparatorStyle separators = SeparatorStyle::STANDARD);
+    static QString formatWithUnit(Unit unit, const CAmount& amount, bool plussign = false, VoidCoinSeparatorStyle separators = VoidCoinSeparatorStyle::STANDARD);
     //! Format as HTML string (with unit)
-    static QString formatHtmlWithUnit(Unit unit, const CAmount& amount, bool plussign = false, SeparatorStyle separators = SeparatorStyle::STANDARD);
+    static QString formatHtmlWithUnit(Unit unit, const CAmount& amount, bool plussign = false, VoidCoinSeparatorStyle separators = VoidCoinSeparatorStyle::STANDARD);
     //! Format as string (with unit) of fixed length to preserve privacy, if it is set.
-    static QString formatWithPrivacy(Unit unit, const CAmount& amount, SeparatorStyle separators, bool privacy);
+    static QString formatWithPrivacy(Unit unit, const CAmount& amount, VoidCoinSeparatorStyle separators, bool privacy);
     //! Parse string to coin amount
     static bool parse(Unit unit, const QString& value, CAmount* val_out);
     //! Gets title for amount column including current display unit if optionsModel reference available */

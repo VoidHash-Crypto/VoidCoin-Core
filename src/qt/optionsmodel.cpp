@@ -190,13 +190,13 @@ bool OptionsModel::Init(bilingual_str& error)
 
     // Display
     if (!settings.contains("DisplayVoidCoinUnit")) {
-        settings.setValue("DisplayVoidCoinUnit", QVariant::fromValue(VoidCoinUnit::VOID));
+        settings.setValue("DisplayVoidCoinUnit", QVariant::fromValue(VoidCoinUnit::VCOIN));
     }
     QVariant unit = settings.value("DisplayVoidCoinUnit");
     if (unit.canConvert<VoidCoinUnit>()) {
         m_display_voidcoin_unit = unit.value<VoidCoinUnit>();
     } else {
-        m_display_voidcoin_unit = VoidCoinUnit::VOID;
+        m_display_voidcoin_unit = VoidCoinUnit::VCOIN;
         settings.setValue("DisplayVoidCoinUnit", QVariant::fromValue(m_display_voidcoin_unit));
     }
 

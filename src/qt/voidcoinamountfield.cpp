@@ -60,7 +60,7 @@ public:
 
         if (valid) {
             val = qBound(m_min_amount, val, m_max_amount);
-            input = VoidCoinUnits::format(currentUnit, val, false, VoidCoinUnits::SeparatorStyle::ALWAYS);
+            input = VoidCoinUnits::format(currentUnit, val, false, VoidCoinSeparatorStyle::ALWAYS);
             lineEdit()->setText(input);
         }
     }
@@ -72,7 +72,7 @@ public:
 
     void setValue(const CAmount& value)
     {
-        lineEdit()->setText(VoidCoinUnits::format(currentUnit, value, false, VoidCoinUnits::SeparatorStyle::ALWAYS));
+        lineEdit()->setText(VoidCoinUnits::format(currentUnit, value, false, VoidCoinSeparatorStyle::ALWAYS));
         Q_EMIT valueChanged();
     }
 
@@ -106,7 +106,7 @@ public:
         CAmount val = value(&valid);
 
         currentUnit = unit;
-        lineEdit()->setPlaceholderText(VoidCoinUnits::format(currentUnit, m_min_amount, false, VoidCoinUnits::SeparatorStyle::ALWAYS));
+        lineEdit()->setPlaceholderText(VoidCoinUnits::format(currentUnit, m_min_amount, false, VoidCoinSeparatorStyle::ALWAYS));
         if(valid)
             setValue(val);
         else
@@ -126,7 +126,7 @@ public:
 
             const QFontMetrics fm(fontMetrics());
             int h = lineEdit()->minimumSizeHint().height();
-            int w = GUIUtil::TextWidth(fm, VoidCoinUnits::format(VoidCoinUnit::VOID, VoidCoinUnits::maxMoney(), false, VoidCoinUnits::SeparatorStyle::ALWAYS));
+            int w = GUIUtil::TextWidth(fm, VoidCoinUnits::format(VoidCoinUnit::VCOIN, VoidCoinUnits::maxMoney(), false, VoidCoinSeparatorStyle::ALWAYS));
             w += 2; // cursor blinking space
 
             QStyleOptionSpinBox opt;
@@ -151,7 +151,7 @@ public:
     }
 
 private:
-    VoidCoinUnit currentUnit{VoidCoinUnit::VOID};
+    VoidCoinUnit currentUnit{VoidCoinUnit::VCOIN};
     CAmount singleStep{CAmount(100000)}; // satoshis
     mutable QSize cachedMinimumSizeHint;
     bool m_allow_empty{true};

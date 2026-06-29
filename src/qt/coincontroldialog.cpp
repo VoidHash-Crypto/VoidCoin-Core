@@ -493,7 +493,7 @@ void CoinControlDialog::updateLabels(CCoinControl& m_coin_control, WalletModel *
     }
 
     // actually update labels
-    VoidCoinUnit nDisplayUnit = VoidCoinUnit::VOID;
+    VoidCoinUnit nDisplayUnit = VoidCoinUnit::VCOIN;
     if (model && model->getOptionsModel())
         nDisplayUnit = model->getOptionsModel()->getDisplayUnit();
 
