@@ -1,0 +1,5 @@
+build/
+build-win/
+build-win-qt/
+build-qt/
+depends/sources/
