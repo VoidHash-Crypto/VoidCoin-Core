@@ -1,33 +1,33 @@
-# /etc/conf.d/kvanta5d: config file for /etc/init.d/kvanta5d
+# /etc/conf.d/voidcoind: config file for /etc/init.d/voidcoind
 
 # Config file location
-#KVANTA5D_CONFIGFILE="/etc/kvanta5/kvanta5.conf"
+#VOIDCOIND_CONFIGFILE="/etc/voidcoin/voidcoin.conf"
 
-# What directory to write pidfile to?  (created and owned by $KVANTA5D_USER)
-#KVANTA5D_PIDDIR="/var/run/kvanta5d"
+# What directory to write pidfile to?  (created and owned by $VOIDCOIND_USER)
+#VOIDCOIND_PIDDIR="/var/run/voidcoind"
 
 # What filename to give the pidfile
-#KVANTA5D_PIDFILE="${KVANTA5D_PIDDIR}/kvanta5d.pid"
+#VOIDCOIND_PIDFILE="${VOIDCOIND_PIDDIR}/voidcoind.pid"
 
-# Where to write kvanta5d data (be mindful that the blockchain is large)
-#KVANTA5D_DATADIR="/var/lib/kvanta5d"
+# Where to write voidcoind data (be mindful that the blockchain is large)
+#VOIDCOIND_DATADIR="/var/lib/voidcoind"
 
-# User and group to own kvanta5d process
-#KVANTA5D_USER="kvanta5"
-#KVANTA5D_GROUP="kvanta5"
+# User and group to own voidcoind process
+#VOIDCOIND_USER="voidcoin"
+#VOIDCOIND_GROUP="voidcoin"
 
-# Path to kvanta5d executable
-#KVANTA5D_BIN="/usr/bin/kvanta5d"
+# Path to voidcoind executable
+#VOIDCOIND_BIN="/usr/bin/voidcoind"
 
-# Nice value to run kvanta5d under
-#KVANTA5D_NICE=0
+# Nice value to run voidcoind under
+#VOIDCOIND_NICE=0
 
 # Additional options (avoid -conf and -datadir, use flags above)
-#KVANTA5D_OPTS=""
+#VOIDCOIND_OPTS=""
 
-# The timeout in seconds OpenRC will wait for kvanta5d to terminate
+# The timeout in seconds OpenRC will wait for voidcoind to terminate
 # after a SIGTERM has been raised.
 # Note that this will be mapped as argument to start-stop-daemon's
 # '--retry' option, which means you can specify a retry schedule
 # here. For more information see man 8 start-stop-daemon.
-KVANTA5D_SIGTERM_TIMEOUT=600
+VOIDCOIND_SIGTERM_TIMEOUT=600

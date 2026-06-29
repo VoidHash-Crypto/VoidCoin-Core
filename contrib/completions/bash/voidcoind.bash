@@ -1,16 +1,16 @@
-# bash programmable completion for kvanta5d(1) and kvanta5-qt(1)
+# bash programmable completion for voidcoind(1) and voidcoin-qt(1)
 # Copyright (c) 2015-2026 The Bitcoin Core developers
-# Copyright (c) 2026 The Kvanta5 Core developers
+# Copyright (c) 2026 The VoidCoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-_kvanta5d() {
+_voidcoind() {
     local cur prev words=() cword
-    local kvanta5d
+    local voidcoind
 
-    # save and use original argument to invoke kvanta5d for -help
+    # save and use original argument to invoke voidcoind for -help
     # it might not be in $PATH
-    kvanta5d="$1"
+    voidcoind="$1"
 
     COMPREPLY=()
     _get_comp_words_by_ref -n = cur prev words cword
@@ -34,7 +34,7 @@ _kvanta5d() {
             # only parse -help if sensible
             if [[ -z "$cur" || "$cur" =~ ^- ]]; then
                 local helpopts
-                helpopts=$($kvanta5d -help 2>&1 | awk '$1 ~ /^-/ { sub(/=.*/, "="); print $1 }' )
+                helpopts=$($voidcoind -help 2>&1 | awk '$1 ~ /^-/ { sub(/=.*/, "="); print $1 }' )
                 COMPREPLY=( $( compgen -W "$helpopts" -- "$cur" ) )
             fi
 
@@ -46,7 +46,7 @@ _kvanta5d() {
             ;;
     esac
 } &&
-complete -F _kvanta5d kvanta5d kvanta5-qt
+complete -F _voidcoind voidcoind voidcoin-qt
 
 # Local variables:
 # mode: shell-script

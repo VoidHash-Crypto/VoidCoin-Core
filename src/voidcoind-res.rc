@@ -14,14 +14,14 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "Kvanta5"
-            VALUE "FileDescription",    "kvanta5d (Kvanta5 node with a JSON-RPC server)"
+            VALUE "CompanyName",        "VoidCoin"
+            VALUE "FileDescription",    "voidcoind (VoidCoin node with a JSON-RPC server)"
             VALUE "FileVersion",        CLIENT_VERSION_STRING
-            VALUE "InternalName",       "kvanta5d"
+            VALUE "InternalName",       "voidcoind"
             VALUE "LegalCopyright",     COPYRIGHT_STR
             VALUE "LegalTrademarks1",   "Distributed under the MIT software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
-            VALUE "OriginalFilename",   "kvanta5d.exe"
-            VALUE "ProductName",        "kvanta5d"
+            VALUE "OriginalFilename",   "voidcoind.exe"
+            VALUE "ProductName",        "voidcoind"
             VALUE "ProductVersion",     CLIENT_VERSION_STRING
         END
     END

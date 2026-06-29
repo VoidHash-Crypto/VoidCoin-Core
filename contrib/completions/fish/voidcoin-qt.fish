@@ -1,8 +1,8 @@
 # Disable files from being included in completions by default
-complete --command kvanta5-qt --no-files
+complete --command voidcoin-qt --no-files
 
 # Extract options
-function __fish_kvanta5qt_get_options
+function __fish_voidcoinqt_get_options
     argparse 'nofiles' -- $argv
     set --local cmd (commandline -opc)[1]
     set --local options
@@ -21,15 +21,15 @@ end
 
 # Add options with file completion
 complete \
-    --command kvanta5-qt \
-    --arguments "(__fish_kvanta5qt_get_options)"
+    --command voidcoin-qt \
+    --arguments "(__fish_voidcoinqt_get_options)"
 # Enable file completions only if the commandline now contains a `*.=` style option
-complete -c kvanta5-qt \
+complete -c voidcoin-qt \
     --condition 'string match --regex -- ".*=" (commandline -pt)' \
     --force-files
 
 # Add options without file completion
 complete \
-    --command kvanta5-qt \
-    --arguments "(__fish_kvanta5qt_get_options --nofiles)"
+    --command voidcoin-qt \
+    --arguments "(__fish_voidcoinqt_get_options --nofiles)"
 

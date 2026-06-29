@@ -1,4 +1,4 @@
-AC_INIT([minisketch], [0.0.1], [http://github.com/kvanta5-core/minisketch/])
+AC_INIT([minisketch], [0.0.1], [http://github.com/voidcoin-core/minisketch/])
 
 m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
 

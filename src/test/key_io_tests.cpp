@@ -62,7 +62,7 @@ static void CheckDestinationRoundTrip(const CScript& expected_script)
 
     // Bech32/Bech32m-style native P2QR addresses are valid as all-lowercase
     // or all-uppercase. Base58 wrapped P2SH-P2QR addresses are case-sensitive.
-    const bool is_native_p2qr = address.rfind("kvqr1", 0) == 0 || address.rfind("KVQR1", 0) == 0;
+    const bool is_native_p2qr = address.rfind("vqr1", 0) == 0 || address.rfind("VQR1", 0) == 0;
     if (is_native_p2qr) {
         BOOST_CHECK_MESSAGE(IsValidDestination(flipped_dest), "uppercase native P2QR address became invalid: " + flipped);
         BOOST_CHECK_EQUAL(HexStr(GetScriptForDestination(flipped_dest)), HexStr(expected_script));

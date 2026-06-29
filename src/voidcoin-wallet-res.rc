@@ -14,14 +14,14 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "Kvanta5"
-            VALUE "FileDescription",    "kvanta5-wallet (CLI tool for " CLIENT_NAME " wallets)"
+            VALUE "CompanyName",        "VoidCoin"
+            VALUE "FileDescription",    "voidcoin-wallet (CLI tool for " CLIENT_NAME " wallets)"
             VALUE "FileVersion",        CLIENT_VERSION_STRING
-            VALUE "InternalName",       "kvanta5-wallet"
+            VALUE "InternalName",       "voidcoin-wallet"
             VALUE "LegalCopyright",     COPYRIGHT_STR
             VALUE "LegalTrademarks1",   "Distributed under the MIT software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
-            VALUE "OriginalFilename",   "kvanta5-wallet.exe"
-            VALUE "ProductName",        "kvanta5-wallet"
+            VALUE "OriginalFilename",   "voidcoin-wallet.exe"
+            VALUE "ProductName",        "voidcoin-wallet"
             VALUE "ProductVersion",     CLIENT_VERSION_STRING
         END
     END

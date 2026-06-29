@@ -446,8 +446,8 @@ RPCHelpMan createp2qrmultisig()
             }
         },
         RPCExamples{
-            HelpExampleCli("createp2qrmultisig", "2 '[\"kvqr1...\",\"kvqr1...\",\"kvqr1...\"]'") +
-            HelpExampleRpc("createp2qrmultisig", "2, [\"kvqr1...\",\"kvqr1...\",\"kvqr1...\"]")
+            HelpExampleCli("createp2qrmultisig", "2 '[\"vqr1...\",\"vqr1...\",\"vqr1...\"]'") +
+            HelpExampleRpc("createp2qrmultisig", "2, [\"vqr1...\",\"vqr1...\",\"vqr1...\"]")
         },
         [&](const RPCHelpMan& self, const JSONRPCRequest& request) -> UniValue
 {

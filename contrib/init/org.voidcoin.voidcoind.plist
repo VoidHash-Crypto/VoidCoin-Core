@@ -3,10 +3,10 @@
 <plist version="1.0">
 <dict>
 	<key>Label</key>
-	<string>org.kvanta5.kvanta5d</string>
+	<string>org.voidcoin.voidcoind</string>
 	<key>ProgramArguments</key>
 	<array>
-		<string>/usr/local/bin/kvanta5d</string>
+		<string>/usr/local/bin/voidcoind</string>
 	</array>
 	<key>RunAtLoad</key>
 	<true/>

@@ -1,36 +1,36 @@
 #!/usr/bin/env bash
 #
-#  kvanta5d The kvanta5 core server.
+#  voidcoind The voidcoin core server.
 #
 #
 # chkconfig: 345 80 20
-# description: kvanta5d
-# processname: kvanta5d
+# description: voidcoind
+# processname: voidcoind
 #
 
 # Source function library.
 . /etc/init.d/functions
 
-# you can override defaults in /etc/sysconfig/kvanta5d, see below
-if [ -f /etc/sysconfig/kvanta5d ]; then
-        . /etc/sysconfig/kvanta5d
+# you can override defaults in /etc/sysconfig/voidcoind, see below
+if [ -f /etc/sysconfig/voidcoind ]; then
+        . /etc/sysconfig/voidcoind
 fi
 
 RETVAL=0
 
-prog=kvanta5d
-# you can override the lockfile via KVANTA5D_LOCKFILE in /etc/sysconfig/kvanta5d
-lockfile=${KVANTA5D_LOCKFILE-/var/lock/subsys/kvanta5d}
+prog=voidcoind
+# you can override the lockfile via VOIDCOIND_LOCKFILE in /etc/sysconfig/voidcoind
+lockfile=${VOIDCOIND_LOCKFILE-/var/lock/subsys/voidcoind}
 
-# kvanta5d defaults to /usr/bin/kvanta5d, override with KVANTA5D_BIN
-kvanta5d=${KVANTA5D_BIN-/usr/bin/kvanta5d}
+# voidcoind defaults to /usr/bin/voidcoind, override with VOIDCOIND_BIN
+voidcoind=${VOIDCOIND_BIN-/usr/bin/voidcoind}
 
-# kvanta5d opts default to -disablewallet, override with KVANTA5D_OPTS
-kvanta5d_opts=${KVANTA5D_OPTS--disablewallet}
+# voidcoind opts default to -disablewallet, override with VOIDCOIND_OPTS
+voidcoind_opts=${VOIDCOIND_OPTS--disablewallet}
 
 start() {
     echo -n $"Starting $prog: "
-    daemon $DAEMONOPTS $kvanta5d $kvanta5d_opts
+    daemon $DAEMONOPTS $voidcoind $voidcoind_opts
     RETVAL=$?
     echo
     [ $RETVAL -eq 0 ] && touch $lockfile

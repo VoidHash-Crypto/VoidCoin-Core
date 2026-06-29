@@ -1,16 +1,16 @@
-# bash programmable completion for kvanta5-tx(1)
+# bash programmable completion for voidcoin-tx(1)
 # Copyright (c) 2015-2026 The Bitcoin Core developers
-# Copyright (c) 2026 The Kvanta5 Core developers
+# Copyright (c) 2026 The VoidCoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-_kvanta5_tx() {
+_voidcoin_tx() {
     local cur prev words=() cword
-    local kvanta5_tx
+    local voidcoin_tx
 
-    # save and use original argument to invoke kvanta5-tx for -help
+    # save and use original argument to invoke voidcoin-tx for -help
     # it might not be in $PATH
-    kvanta5_tx="$1"
+    voidcoin_tx="$1"
 
     COMPREPLY=()
     _get_comp_words_by_ref -n =: cur prev words cword
@@ -28,15 +28,15 @@ _kvanta5_tx() {
 
     if [[ "$cword" == 1 || ( "$prev" != "-create" && "$prev" == -* ) ]]; then
         # only options (or an uncompletable hex-string) allowed
-        # parse kvanta5-tx -help for options
+        # parse voidcoin-tx -help for options
         local helpopts
-        helpopts=$($kvanta5_tx -help | sed -e '/^  -/ p' -e d )
+        helpopts=$($voidcoin_tx -help | sed -e '/^  -/ p' -e d )
         COMPREPLY=( $( compgen -W "$helpopts" -- "$cur" ) )
     else
         # only commands are allowed
         # parse -help for commands
         local helpcmds
-        helpcmds=$($kvanta5_tx -help | sed -e '1,/Commands:/d' -e 's/=.*/=/' -e '/^  [a-z]/ p' -e d )
+        helpcmds=$($voidcoin_tx -help | sed -e '1,/Commands:/d' -e 's/=.*/=/' -e '/^  [a-z]/ p' -e d )
         COMPREPLY=( $( compgen -W "$helpcmds" -- "$cur" ) )
     fi
 
@@ -47,7 +47,7 @@ _kvanta5_tx() {
 
     return 0
 } &&
-complete -F _kvanta5_tx kvanta5-tx
+complete -F _voidcoin_tx voidcoin-tx
 
 # Local variables:
 # mode: shell-script

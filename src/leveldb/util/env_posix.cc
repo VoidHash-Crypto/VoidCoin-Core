@@ -393,7 +393,7 @@ class PosixWritableFile final : public WritableFile {
       return Status::OK();
     }
     // Do not crash if filesystem can't fsync directories
-    // (see https://github.com/kvanta5/kvanta5/pull/10000)
+    // (see https://github.com/voidcoin/voidcoin/pull/10000)
     if (syncing_dir && errno == EINVAL) {
       return Status::OK();
     }

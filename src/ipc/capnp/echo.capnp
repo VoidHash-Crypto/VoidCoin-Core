@@ -1,4 +1,4 @@
-# Copyright (c) 2021 The Kvanta5 Core developers
+# Copyright (c) 2021 The VoidCoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 

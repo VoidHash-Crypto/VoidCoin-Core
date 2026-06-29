@@ -1205,8 +1205,8 @@ RPCHelpMan dumpvoidcoinvaultbackup()
                     }
                 },
                 RPCExamples{
-                    HelpExampleCli("dumpvoidcoinvaultbackup", "\"kvqr1...\" \"/home/user/vault.void_coinvaultbackup.json\"")
-            + HelpExampleRpc("dumpvoidcoinvaultbackup", "\"kvqr1...\", \"/home/user/vault.void_coinvaultbackup.json\"")
+                    HelpExampleCli("dumpvoidcoinvaultbackup", "\"vqr1...\" \"/home/user/vault.void_coinvaultbackup.json\"")
+            + HelpExampleRpc("dumpvoidcoinvaultbackup", "\"vqr1...\", \"/home/user/vault.void_coinvaultbackup.json\"")
                 },
         [&](const RPCHelpMan& self, const JSONRPCRequest& request) -> UniValue
 {
@@ -1369,8 +1369,8 @@ RPCHelpMan dumpvoidcoinp2qrseed()
                     }
                 },
                 RPCExamples{
-                    HelpExampleCli("dumpvoidcoinp2qrseed", "\"kvqr1...\"")
-            + HelpExampleRpc("dumpvoidcoinp2qrseed", "\"kvqr1...\"")
+                    HelpExampleCli("dumpvoidcoinp2qrseed", "\"vqr1...\"")
+            + HelpExampleRpc("dumpvoidcoinp2qrseed", "\"vqr1...\"")
                 },
         [&](const RPCHelpMan& self, const JSONRPCRequest& request) -> UniValue
 {

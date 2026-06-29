@@ -95,7 +95,7 @@ void ReceiveCoinsDialog::setModel(WalletModel *_model)
          * Both choices are backed by the same VoidCoin P2QR key material.
          *
          * Native P2QR:
-         *   kvqr1...
+         *   vqr1...
          *   scriptPubKey = OP_RESERVED <32-byte P2QR program>
          *
          * Wrapped P2SH:
@@ -188,7 +188,7 @@ void ReceiveCoinsDialog::on_receiveButton_clicked()
      * VoidCoin receive dropdown:
      *
      * Index 0: Native P2QR
-     *   Display/request kvqr1...
+     *   Display/request vqr1...
      *
      * Index 1: Wrapped P2SH / Mining Compatibility
      *   Generate the same native P2QR key/address internally, then display/request

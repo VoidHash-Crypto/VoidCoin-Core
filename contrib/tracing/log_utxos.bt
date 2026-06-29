@@ -6,9 +6,9 @@
 
   bpftrace contrib/tracing/log_utxos.bt
 
-  This script requires a 'kvanta5d' binary compiled with eBPF support and the
-  'utxocache' tracepoints. By default, it's assumed that 'kvanta5d' is
-  located in './build/bin/kvanta5d'. This can be modified in the script below.
+  This script requires a 'voidcoind' binary compiled with eBPF support and the
+  'utxocache' tracepoints. By default, it's assumed that 'voidcoind' is
+  located in './build/bin/voidcoind'. This can be modified in the script below.
 
   NOTE: requires bpftrace v0.12.0 or above.
 */
@@ -22,7 +22,7 @@ BEGIN
 /*
   Attaches to the 'utxocache:add' tracepoint and prints additions to the UTXO set cache.
 */
-usdt:./build/bin/kvanta5d:utxocache:add
+usdt:./build/bin/voidcoind:utxocache:add
 {
   $txid = arg0;
   $index = (uint32)arg1;
@@ -44,7 +44,7 @@ usdt:./build/bin/kvanta5d:utxocache:add
 /*
   Attaches to the 'utxocache:spent' tracepoint and prints spents from the UTXO set cache.
 */
-usdt:./build/bin/kvanta5d:utxocache:spent
+usdt:./build/bin/voidcoind:utxocache:spent
 {
   $txid = arg0;
   $index = (uint32)arg1;
@@ -66,7 +66,7 @@ usdt:./build/bin/kvanta5d:utxocache:spent
 /*
   Attaches to the 'utxocache:uncache' tracepoint and uncache UTXOs from the UTXO set cache.
 */
-usdt:./build/bin/kvanta5d:utxocache:uncache
+usdt:./build/bin/voidcoind:utxocache:uncache
 {
   $txid = arg0;
   $index = (uint32)arg1;

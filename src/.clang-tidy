@@ -1,6 +1,6 @@
 Checks: '
 -*,
-kvanta5-*,
+voidcoin-*,
 bugprone-argument-comment,
 bugprone-move-forwarding-reference,
 bugprone-string-constructor,

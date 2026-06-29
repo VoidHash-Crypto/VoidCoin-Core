@@ -1,11 +1,11 @@
-# bash programmable completion for kvanta5-cli(1)
+# bash programmable completion for voidcoin-cli(1)
 # Copyright (c) 2015-2026 The Bitcoin Core developers
-# Copyright (c) 2026 The Kvanta5 Core developers
+# Copyright (c) 2026 The VoidCoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-# call $kvanta5-cli for RPC
-_kvanta5_rpc() {
+# call $voidcoin-cli for RPC
+_voidcoin_rpc() {
     # determine already specified args necessary for RPC
     local rpcargs=()
     for i in ${COMP_LINE}; do
@@ -15,16 +15,16 @@ _kvanta5_rpc() {
                 ;;
         esac
     done
-    $kvanta5_cli "${rpcargs[@]}" "$@"
+    $voidcoin_cli "${rpcargs[@]}" "$@"
 }
 
-_kvanta5_cli() {
+_voidcoin_cli() {
     local cur prev words=() cword
-    local kvanta5_cli
+    local voidcoin_cli
 
-    # save and use original argument to invoke kvanta5-cli for -help, help and RPC
-    # as kvanta5-cli might not be in $PATH
-    kvanta5_cli="$1"
+    # save and use original argument to invoke voidcoin-cli for -help, help and RPC
+    # as voidcoin-cli might not be in $PATH
+    voidcoin_cli="$1"
 
     COMPREPLY=()
     _get_comp_words_by_ref -n = cur prev words cword
@@ -113,12 +113,12 @@ _kvanta5_cli() {
 
             # only parse -help if senseful
             if [[ -z "$cur" || "$cur" =~ ^- ]]; then
-                helpopts=$($kvanta5_cli -help 2>&1 | awk '$1 ~ /^-/ { sub(/=.*/, "="); print $1 }' )
+                helpopts=$($voidcoin_cli -help 2>&1 | awk '$1 ~ /^-/ { sub(/=.*/, "="); print $1 }' )
             fi
 
             # only parse help if senseful
             if [[ -z "$cur" || "$cur" =~ ^[a-z] ]]; then
-                commands=$(_kvanta5_rpc help 2>/dev/null | awk '$1 ~ /^[a-z]/ { print $1; }')
+                commands=$(_voidcoin_rpc help 2>/dev/null | awk '$1 ~ /^[a-z]/ { print $1; }')
             fi
 
             COMPREPLY=( $( compgen -W "$helpopts $commands" -- "$cur" ) )
@@ -131,7 +131,7 @@ _kvanta5_cli() {
             ;;
     esac
 } &&
-complete -F _kvanta5_cli kvanta5-cli
+complete -F _voidcoin_cli voidcoin-cli
 
 # Local variables:
 # mode: shell-script

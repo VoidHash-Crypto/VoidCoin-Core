@@ -2,41 +2,41 @@
 
 # backward compatibility for existing gentoo layout 
 #
-if [ -d "/var/lib/kvanta5/.kvanta5" ]; then
-	KVANTA5D_DEFAULT_DATADIR="/var/lib/kvanta5/.kvanta5"
+if [ -d "/var/lib/voidcoin/.voidcoin" ]; then
+	VOIDCOIND_DEFAULT_DATADIR="/var/lib/voidcoin/.voidcoin"
 else
-	KVANTA5D_DEFAULT_DATADIR="/var/lib/kvanta5d"
+	VOIDCOIND_DEFAULT_DATADIR="/var/lib/voidcoind"
 fi
 
-KVANTA5D_CONFIGFILE=${KVANTA5D_CONFIGFILE:-/etc/kvanta5/kvanta5.conf}
-KVANTA5D_PIDDIR=${KVANTA5D_PIDDIR:-/var/run/kvanta5d}
-KVANTA5D_PIDFILE=${KVANTA5D_PIDFILE:-${KVANTA5D_PIDDIR}/kvanta5d.pid}
-KVANTA5D_DATADIR=${KVANTA5D_DATADIR:-${KVANTA5D_DEFAULT_DATADIR}}
-KVANTA5D_USER=${KVANTA5D_USER:-${KVANTA5_USER:-kvanta5}}
-KVANTA5D_GROUP=${KVANTA5D_GROUP:-kvanta5}
-KVANTA5D_BIN=${KVANTA5D_BIN:-/usr/bin/kvanta5d}
-KVANTA5D_NICE=${KVANTA5D_NICE:-${NICELEVEL:-0}}
-KVANTA5D_OPTS="${KVANTA5D_OPTS:-${KVANTA5_OPTS}}"
+VOIDCOIND_CONFIGFILE=${VOIDCOIND_CONFIGFILE:-/etc/voidcoin/voidcoin.conf}
+VOIDCOIND_PIDDIR=${VOIDCOIND_PIDDIR:-/var/run/voidcoind}
+VOIDCOIND_PIDFILE=${VOIDCOIND_PIDFILE:-${VOIDCOIND_PIDDIR}/voidcoind.pid}
+VOIDCOIND_DATADIR=${VOIDCOIND_DATADIR:-${VOIDCOIND_DEFAULT_DATADIR}}
+VOIDCOIND_USER=${VOIDCOIND_USER:-${VOIDCOIN_USER:-voidcoin}}
+VOIDCOIND_GROUP=${VOIDCOIND_GROUP:-voidcoin}
+VOIDCOIND_BIN=${VOIDCOIND_BIN:-/usr/bin/voidcoind}
+VOIDCOIND_NICE=${VOIDCOIND_NICE:-${NICELEVEL:-0}}
+VOIDCOIND_OPTS="${VOIDCOIND_OPTS:-${VOIDCOIN_OPTS}}"
 
-name="Kvanta5 Core Daemon"
-description="Kvanta5 cryptocurrency P2P network daemon"
+name="VoidCoin Core Daemon"
+description="VoidCoin cryptocurrency P2P network daemon"
 
-command="/usr/bin/kvanta5d"
-command_args="-pid=\"${KVANTA5D_PIDFILE}\" \
-		-conf=\"${KVANTA5D_CONFIGFILE}\" \
-		-datadir=\"${KVANTA5D_DATADIR}\" \
+command="/usr/bin/voidcoind"
+command_args="-pid=\"${VOIDCOIND_PIDFILE}\" \
+		-conf=\"${VOIDCOIND_CONFIGFILE}\" \
+		-datadir=\"${VOIDCOIND_DATADIR}\" \
 		-daemon \
-		${KVANTA5D_OPTS}"
+		${VOIDCOIND_OPTS}"
 
-required_files="${KVANTA5D_CONFIGFILE}"
-start_stop_daemon_args="-u ${KVANTA5D_USER} \
-			-N ${KVANTA5D_NICE} -w 2000"
-pidfile="${KVANTA5D_PIDFILE}"
+required_files="${VOIDCOIND_CONFIGFILE}"
+start_stop_daemon_args="-u ${VOIDCOIND_USER} \
+			-N ${VOIDCOIND_NICE} -w 2000"
+pidfile="${VOIDCOIND_PIDFILE}"
 
 # The retry schedule to use when stopping the daemon. Could be either
 # a timeout in seconds or multiple signal/timeout pairs (like
 # "SIGKILL/180 SIGTERM/300")
-retry="${KVANTA5D_SIGTERM_TIMEOUT}"
+retry="${VOIDCOIND_SIGTERM_TIMEOUT}"
 
 depend() {
 	need localmount net
@@ -50,30 +50,30 @@ start_pre() {
 	checkpath \
 	-d \
 	--mode 0750 \
-	--owner "${KVANTA5D_USER}:${KVANTA5D_GROUP}" \
-	"${KVANTA5D_DATADIR}"
+	--owner "${VOIDCOIND_USER}:${VOIDCOIND_GROUP}" \
+	"${VOIDCOIND_DATADIR}"
 
 	checkpath \
 	-d \
 	--mode 0755 \
-	--owner "${KVANTA5D_USER}:${KVANTA5D_GROUP}" \
-	"${KVANTA5D_PIDDIR}"
+	--owner "${VOIDCOIND_USER}:${VOIDCOIND_GROUP}" \
+	"${VOIDCOIND_PIDDIR}"
 
 	checkpath -f \
-	-o "${KVANTA5D_USER}:${KVANTA5D_GROUP}" \
+	-o "${VOIDCOIND_USER}:${VOIDCOIND_GROUP}" \
 	-m 0660 \
-	"${KVANTA5D_CONFIGFILE}"
+	"${VOIDCOIND_CONFIGFILE}"
 
 	checkconfig || return 1
 }
 
 checkconfig()
 {
-	if grep -qs '^rpcuser=' "${KVANTA5D_CONFIGFILE}" && \
-		! grep -qs '^rpcpassword=' "${KVANTA5D_CONFIGFILE}" ; then
+	if grep -qs '^rpcuser=' "${VOIDCOIND_CONFIGFILE}" && \
+		! grep -qs '^rpcpassword=' "${VOIDCOIND_CONFIGFILE}" ; then
 		eerror ""
-		eerror "ERROR: You must set a secure rpcpassword to run kvanta5d."
-		eerror "The setting must appear in ${KVANTA5D_CONFIGFILE}"
+		eerror "ERROR: You must set a secure rpcpassword to run voidcoind."
+		eerror "The setting must appear in ${VOIDCOIND_CONFIGFILE}"
 		eerror ""
 		eerror "This password is security critical to securing wallets "
 		eerror "and must not be the same as the rpcuser setting."
@@ -85,7 +85,7 @@ checkconfig()
 		eerror "It is recommended that you also set alertnotify so you are "
 		eerror "notified of problems:"
 		eerror ""
-		eerror "ie: alertnotify=echo %%s | mail -s \"Kvanta5 Alert\"" \
+		eerror "ie: alertnotify=echo %%s | mail -s \"VoidCoin Alert\"" \
 			"admin@foo.com"
 		eerror ""
 		return 1

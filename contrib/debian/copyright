@@ -1,13 +1,13 @@
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: Kvanta5
+Upstream-Name: VoidCoin
 Upstream-Contact: Satoshi Nakamoto <satoshin@gmx.com>
- irc://#kvanta5-core-dev@libera.chat
-Source: https://github.com/kvanta5/kvanta5
+ irc://#voidcoin-core-dev@libera.chat
+Source: https://github.com/voidcoin/voidcoin
 
 Files: *
-Copyright: 2009-2025, Kvanta5 Core Developers
+Copyright: 2009-2025, VoidCoin Core Developers
 License: Expat
-Comment: The Kvanta5 Core Developers encompasses all contributors to the
+Comment: The VoidCoin Core Developers encompasses all contributors to the
          project, listed in the release notes or the git log.
 
 Files: debian/*
@@ -67,12 +67,12 @@ Copyright: Stephen Hutchings, Jonas Schnelli
 License: Expat
 Comment: Modifications of Stephen Hutchings' Typicons
 
-Files: src/qt/res/icons/kvanta5.*
-       share/pixmaps/kvanta5*
-       src/qt/res/src/kvanta5.svg
+Files: src/qt/res/icons/voidcoin.*
+       share/pixmaps/voidcoin*
+       src/qt/res/src/voidcoin.svg
 Copyright: Bitboy, Jonas Schnelli
 License: public-domain
-Comment: Site: https://kvanta5talk.org/?topic=1756.0
+Comment: Site: https://voidcointalk.org/?topic=1756.0
 
 Files: src/qt/res/icons/proxy.png
        src/qt/res/src/proxy.svg

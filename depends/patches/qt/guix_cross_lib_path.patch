@@ -1,6 +1,6 @@
 Facilitate guix building with CROSS_LIBRARY_PATH
 
-See discussion in https://github.com/kvanta5/kvanta5/pull/15277.
+See discussion in https://github.com/voidcoin/voidcoin/pull/15277.
 
 --- a/qtbase/mkspecs/features/toolchain.prf
 +++ b/qtbase/mkspecs/features/toolchain.prf

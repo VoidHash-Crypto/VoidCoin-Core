@@ -1,8 +1,8 @@
 # Disable files from being included in completions by default
-complete --command kvanta5-util --no-files
+complete --command voidcoin-util --no-files
 
 # Extract options
-function __fish_kvanta5_util_get_options
+function __fish_voidcoin_util_get_options
     set --local cmd (commandline -opc)[1]
     set --local options
 
@@ -14,7 +14,7 @@ function __fish_kvanta5_util_get_options
 end
 
 # Extract commands
-function __fish_kvanta5_util_get_commands
+function __fish_voidcoin_util_get_commands
     set --local cmd (commandline -opc)[1]
     set --local commands
 
@@ -26,13 +26,13 @@ end
 
 # Add options
 complete \
-    --command kvanta5-util \
-    --condition "not __fish_seen_subcommand_from (__fish_kvanta5_util_get_commands)" \
-    --arguments "(__fish_kvanta5_util_get_options)"
+    --command voidcoin-util \
+    --condition "not __fish_seen_subcommand_from (__fish_voidcoin_util_get_commands)" \
+    --arguments "(__fish_voidcoin_util_get_options)"
 
 # Add commands
 complete \
-    --command kvanta5-util \
-    --condition "not __fish_seen_subcommand_from (__fish_kvanta5_util_get_commands)" \
-    --arguments "(__fish_kvanta5_util_get_commands)"
+    --command voidcoin-util \
+    --condition "not __fish_seen_subcommand_from (__fish_voidcoin_util_get_commands)" \
+    --arguments "(__fish_voidcoin_util_get_commands)"
 

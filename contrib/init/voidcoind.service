@@ -1,39 +1,39 @@
 # It is not recommended to modify this file in-place, because it will
 # be overwritten during package upgrades. If you want to add further
 # options or overwrite existing ones then use
-# $ systemctl edit kvanta5d.service
+# $ systemctl edit voidcoind.service
 # See "man systemd.service" for details.
 
 # Note that almost all daemon options could be specified in
-# /etc/kvanta5/kvanta5.conf, but keep in mind those explicitly
+# /etc/voidcoin/voidcoin.conf, but keep in mind those explicitly
 # specified as arguments in ExecStart= will override those in the
 # config file.
 
 [Unit]
-Description=Kvanta5 daemon
-Documentation=https://github.com/kvanta5/kvanta5/blob/master/doc/init.md
+Description=VoidCoin daemon
+Documentation=https://github.com/voidcoin/voidcoin/blob/master/doc/init.md
 
 # https://www.freedesktop.org/wiki/Software/systemd/NetworkTarget/
 After=network-online.target
 Wants=network-online.target
 
 [Service]
-ExecStart=/usr/bin/kvanta5d -pid=/run/kvanta5d/kvanta5d.pid \
-                            -conf=/etc/kvanta5/kvanta5.conf \
-                            -datadir=/var/lib/kvanta5d \
+ExecStart=/usr/bin/voidcoind -pid=/run/voidcoind/voidcoind.pid \
+                            -conf=/etc/voidcoin/voidcoin.conf \
+                            -datadir=/var/lib/voidcoind \
                             -startupnotify='systemd-notify --ready' \
                             -shutdownnotify='systemd-notify --stopping'
 
 # Make sure the config directory is readable by the service user
 PermissionsStartOnly=true
-ExecStartPre=/bin/chgrp kvanta5 /etc/kvanta5
+ExecStartPre=/bin/chgrp voidcoin /etc/voidcoin
 
 # Process management
 ####################
 
 Type=notify
 NotifyAccess=all
-PIDFile=/run/kvanta5d/kvanta5d.pid
+PIDFile=/run/voidcoind/voidcoind.pid
 
 Restart=on-failure
 TimeoutStartSec=infinity
@@ -42,20 +42,20 @@ TimeoutStopSec=600
 # Directory creation and permissions
 ####################################
 
-# Run as kvanta5:kvanta5
-User=kvanta5
-Group=kvanta5
+# Run as voidcoin:voidcoin
+User=voidcoin
+Group=voidcoin
 
-# /run/kvanta5d
-RuntimeDirectory=kvanta5d
+# /run/voidcoind
+RuntimeDirectory=voidcoind
 RuntimeDirectoryMode=0710
 
-# /etc/kvanta5
-ConfigurationDirectory=kvanta5
+# /etc/voidcoin
+ConfigurationDirectory=voidcoin
 ConfigurationDirectoryMode=0710
 
-# /var/lib/kvanta5d
-StateDirectory=kvanta5d
+# /var/lib/voidcoind
+StateDirectory=voidcoind
 StateDirectoryMode=0710
 
 # Hardening measures
