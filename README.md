@@ -43,15 +43,16 @@ The smallest unit of VOID is the **Quark**, where `1 VOID = 100,000,000 Quarks`.
 
 ## Address Types
 
-VoidCoin Core wallets support three address formats out of the box:
+The VoidCoin Core wallet GUI exposes two receive address formats, both backed by the same quantum-resistant key material:
 
 | Prefix | Type | Description |
 |---|---|---|
-| `V...` | P2PKH | Standard native address |
-| `3...` | P2SH | Wrapped script address |
 | `vqr1...` | P2QR | Native quantum-resistant address |
+| `3...` | P2SH | Wrapped P2QR address, for mining pool / legacy software compatibility |
 
 `vqr1...` addresses use a post-quantum signature scheme designed to remain secure even against an adversary with access to a cryptographically-relevant quantum computer — a property traditional ECDSA-based addresses (used by Bitcoin and most other chains) do not have.
+
+Legacy P2PKH (`V...`) addresses remain supported at the protocol and RPC level for compatibility, but are intentionally not offered in the wallet's Receive tab. This is a deliberate design choice to steer users toward quantum-resistant addresses by default.
 
 ---
 
