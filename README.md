@@ -34,3 +34,11 @@ Build instructions are available in the documentation directory:
 
 - GitHub: https://github.com/VoidHash-Crypto/VoidCoin-Core
 - Organization: https://github.com/VoidHash-Crypto
+
+## Mining
+
+VoidCoin uses SHA256d, compatible with standard SHA256d mining software (CGMiner, BFGMiner, CPUMiner-Multi).
+stratum+tcp://<your-pool-address>:<port>
+## Community
+
+- Discord: https://discord.gg/EmHXSJ4xHh
